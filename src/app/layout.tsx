@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,10 +25,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className="min-h-screen bg-slate-50 text-slate-900">
+        <header className="sticky top-0 z-30 border-b bg-white/80 backdrop-blur">
+          <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+            <Link href="/" className="font-semibold">{process.env.NEXT_PUBLIC_APP_NAME || "AI Knowledge Hub"}</Link>
+            <div className="flex gap-4 text-sm">
+              <Link href="/dashboard" className="hover:underline">Dashboard</Link>
+              <Link href="/ingest" className="hover:underline">Ingest</Link>
+              <Link href="/query" className="hover:underline">Query</Link>
+            </div>
+          </nav>
+        </header>
+        <main className="mx-auto max-w-6xl px-4 py-6">{children}</main>
       </body>
     </html>
   );
