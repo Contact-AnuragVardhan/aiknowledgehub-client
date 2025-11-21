@@ -1,3 +1,4 @@
+//src\app\(search)\query\page.tsx
 "use client";
 import { useState } from "react";
 import { askQuery } from "@/lib/api";
