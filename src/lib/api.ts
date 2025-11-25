@@ -1,6 +1,6 @@
 // src/lib/api.ts
 import { ApiClient } from "./apiclient";
-import type { UploadResponse, QueryResponse } from "./types";
+import type { QueryResponse, IngestResponse, IngestJobStatus, UploadResponse } from "./types";
 
 const api = new ApiClient("");
 
@@ -19,22 +19,33 @@ export async function login(username: string, password: string) {
   return data;
 }
 
+export async function uploadDocument(file: File): Promise<UploadResponse> {
+  const fd = new FormData();
+  fd.set("file", file);
+
+  const data = await api.post<UploadResponse>("/api/ingest", fd, {
+    credentials: "include",
+  });
+
+  return data;
+}
+
+export async function getIngestJobStatus(
+  jobId: number
+): Promise<IngestJobStatus> {
+  const data = await api.get<IngestJobStatus>(`/api/ingest-jobs/${jobId}`, {
+    credentials: "include",
+    cache: "no-store",
+  });
+
+  return data;
+}
+
 export async function listDocs(): Promise<string[]> {
   const data = await api.get<string[]>("/api/docs", {
     cache: "no-store",
     credentials: "include",
   });
-  return data;
-}
-
-export async function uploadDocument(file: File): Promise<UploadResponse> {
-  const fd = new FormData();
-  fd.set("file", file);
-
-  const data = await api.post<UploadResponse>("/api/upload", fd, {
-    credentials: "include",
-  });
-
   return data;
 }
 
