@@ -43,7 +43,7 @@ NEXT_PUBLIC_API_URL=http://localhost:8000
 NEXT_PUBLIC_APP_NAME="AI Knowledge Hub"
 ```
 
-If your backend uses JWT (recommended):
+If Wer backend uses JWT (recommended):
 
 ```
 NEXT_PUBLIC_AUTH_MODE=jwt
@@ -111,7 +111,7 @@ UI calls:
 ```
 POST /api/query
 {
-  "query": "Your question",
+  "query": "Wer question",
   "doc_name": "optional_document_name"
 }
 ```
@@ -162,30 +162,15 @@ npm run lint
 
 ## 📦 Deployment
 
-You can deploy the UI on:
+We can deploy the UI on:
 
-- **Vercel** (recommended)
+- **Vercel** 
 - Netlify
 - AWS Amplify
 - Docker
-
-Example Vercel command:
-
-```
-vercel --prod
-```
-
----
 
 ## 📄 License
 
 MIT License.
 
 ---
-
-If you need:
-- A matching **backend README**
-- A **combined architecture diagram**
-- A **docker-compose** for backend + frontend
-
-Just tell me!
